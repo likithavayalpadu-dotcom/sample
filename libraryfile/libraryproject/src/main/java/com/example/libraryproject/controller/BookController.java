@@ -21,7 +21,7 @@ public class BookController {
         this.bookService = bookService;
     }
     @PostMapping 
-    public Book saveBook(@RequestBody Book book){
+    public List<Book> saveBook(@RequestBody List<Book> book){
         return bookService.saveBook(book);
     }
 

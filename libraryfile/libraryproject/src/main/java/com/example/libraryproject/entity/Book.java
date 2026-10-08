@@ -1,6 +1,8 @@
 package com.example.libraryproject.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -9,17 +11,18 @@ import jakarta.persistence.ManyToOne;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
     private String author;
     private boolean available;
-    
-    @ManyToOne 
-    @JoinColumn(name="sid")
+
+       // Many Books belong to One Student
+    @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
-
-
+    
     // Default constructor required by JPA
     public Book() {
     }
@@ -63,12 +66,4 @@ public class Book {
     public void setAvailable(boolean available) {
         this.available = available;
     }
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
 }

@@ -17,7 +17,7 @@ public BookService(BookRepos bookRepos) {
     }
 
     //save Book
-    public List<Book> saveBookp(List<Book> book){
+    public List<Book> saveBook(List<Book> book){
         return bookRepos.saveAll(book);
     }
     

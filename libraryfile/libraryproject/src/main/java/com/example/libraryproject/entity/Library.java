@@ -1,15 +1,24 @@
 package com.example.libraryproject.entity;
+import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity 
 public class Library {
-    public Library(Long id, String libraryName, String location) {
-        this.id = id;
-        this.libraryName = libraryName;
-        this.location = location;
-    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String libraryName;
+    private String location;
+
+    @OneToMany(mappedBy = "library")
+    private List<Student> students;
+    
     public Long getId() {
         return id;
     }
@@ -28,9 +37,15 @@ public class Library {
     public void setLocation(String location) {
         this.location = location;
     }
-    @Id 
-    private Long id;
-    private String libraryName;
-    private String location;
+     
+    // Default constructor required by JPA
+    public Library() {
+    }
+    
+    public Library(Long id, String libraryName, String location) {
+        this.id = id;
+        this.libraryName = libraryName;
+        this.location = location;
+    }
     
 }

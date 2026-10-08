@@ -16,10 +16,9 @@ public class LibraryService {
         this.libraryRep = libraryRep;
     }
     // save all library information
-    public Library saveLibraries(Library library){
-        return libraryRep.save(library);
-    }
-
+    public List<Library> saveLibraries(List<Library> libraries) {
+    return libraryRep.saveAll(libraries);
+}
     //get all library information
     public List<Library> getAllLibraries(){
         return libraryRep.findAll();

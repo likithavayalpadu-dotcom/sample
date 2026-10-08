@@ -1,14 +1,32 @@
 package com.example.libraryproject.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 @Entity 
 public class Student {
-    @Id 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private  String name;
     private String email;
     private String age;
+
+    // Many Students belong to One Library
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Library library;
+
+    // One Student can have Many Books
+    @OneToMany(mappedBy = "student")
+    private List<Book> books;
+
 
     public Student(){
         
@@ -46,6 +64,16 @@ public class Student {
         this.email = email;
         this.age = age;
     }
+
+
+     public Library getLibrary() {
+         return library;
+     }
+
+
+     public void setLibrary(Library library) {
+         this.library = library;
+     }
 
 
 }
